@@ -129,7 +129,7 @@ router.post('/groups/:groupId/invite', protect, async (req, res) => {
       return res.json({
         message: `No account found for ${email}. Share this invite link:`,
         inviteToken: token,
-        inviteLink: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/register?invite=${token}`
+        inviteLink: `${process.env.FRONTEND_URL || '${process.env.CLIENT_URL}'}/register?invite=${token}`
       });
     }
 
