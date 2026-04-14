@@ -6,16 +6,19 @@ require('dotenv').config();
 const app = express();
 
 // ── Middleware ─────────────────────────────────────────────────────
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
 app.use(express.json());
 
 // ── Routes ─────────────────────────────────────────────────────────
-app.use('/api/auth',     require('./routes/auth'));
-app.use('/api/groups',   require('./routes/groups'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/groups', require('./routes/groups'));
 app.use('/api/expenses', require('./routes/expenses'));
-app.use('/api/groups',   require('./routes/budgets'));       // /api/groups/:id/budget
-app.use('/api/groups',   require('./routes/settlements'));   // /api/groups/:id/settle
-app.use('/api',          require('./routes/invitations'));  // /api/invitations + /api/groups/:id/invite + /api/invite/verify/:token
+app.use('/api/groups', require('./routes/budgets'));       // /api/groups/:id/budget
+app.use('/api/groups', require('./routes/settlements'));   // /api/groups/:id/settle
+app.use('/api', require('./routes/invitations'));  // /api/invitations + /api/groups/:id/invite + /api/invite/verify/:token
 
 // ── Health check ───────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
