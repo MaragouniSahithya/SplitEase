@@ -28,7 +28,7 @@ A full-stack expense splitting web app — track shared expenses, split bills mu
 - Node.js + Express
 - MongoDB + Mongoose
 - JWT Authentication
-- Deployed on Render / Railway
+- Deployed on Render
 
 ---
 
